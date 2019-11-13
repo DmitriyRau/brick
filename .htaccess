@@ -1,0 +1,19 @@
+AddDefaultCharset utf-8
+ 
+RewriteEngine on
+#RewriteRule ^(.*)$ ./$1 
+
+php_value upload_max_filesize 50M
+php_value post_max_size 50M
+php_value display_errors 1
+ 
+ 
+DirectoryIndex c.php?controller=index
+ 
+ErrorDocument 404 c.php?controller=error
+
+RewriteRule ^index.html$ c.php
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ c.php?$1 [L,QSA]
